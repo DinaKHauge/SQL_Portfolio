@@ -80,14 +80,20 @@ INSERT INTO supply (S_ID, P_ID, J_ID, QUANTITY) VALUES
 ('S5', 'P5', 'J4', 400),
 ('S5', 'P6', 'J4', 500);
 
+---------------------------------------------------------------------------------------------------------
+
 SELECT DISTINCT P_ID, CITY FROM part;
 -- use SELECT DISTINCT when i only want unique answers.
+
+---------------------------------------------------------------------------------------------------------
 
 SELECT DISTINCT supply.S_ID, supplier.SNAME
 FROM supply
 JOIN supplier ON supply.S_ID = supplier.S_ID;
 -- JOIN supplier on supply.S_ID = supplier.S_ID combines the S_ID 
 -- with the given names in supplier table
+
+---------------------------------------------------------------------------------------------------------
 
 SELECT DISTINCT supply.P_ID, part.PNAME, supplier.S_ID, supplier.SNAME
 FROM supply
@@ -97,11 +103,15 @@ JOIN supplier ON supply.S_ID = supplier.S_ID;
 -- and combines P_ID from supply with P_ID from part
 -- e.g., 'P1', 'NUT', 'S5', 'ADAMS'
 
+---------------------------------------------------------------------------------------------------------
+
 SELECT DISTINCT supply.P_ID, part.PNAME, supplier.S_ID, supplier.SNAME, project.J_ID, project.JNAME
 FROM supply
 JOIN part ON supply.P_ID = part.P_ID
 JOIN supplier ON supply.S_ID = supplier.S_ID
 JOIN project ON supply.J_ID = project.J_ID;
+
+---------------------------------------------------------------------------------------------------------
 
 SELECT DISTINCT part.PNAME AS part_name, supplier.SNAME AS supplier_name, project.JNAME AS project_name
 FROM supply
@@ -109,6 +119,7 @@ JOIN part ON supply.P_ID = part.P_ID
 JOIN supplier ON supply.S_ID = supplier.S_ID
 JOIN project ON supply.J_ID = project.J_ID;
 
+---------------------------------------------------------------------------------------------------------
 SELECT DISTINCT 
     part.PNAME AS part_name, 
     supplier.SNAME AS supplier_name, 
@@ -139,6 +150,40 @@ JOIN
     supplier ON supply.S_ID = supplier.S_ID
 JOIN 
     project ON supply.J_ID = project.J_ID;
+
+
 -- this code only combines S/P/JNAMES with S/P/J_ID to clean up the code and limit 
 -- the amount of columns. It illustrates what the name of the supplier is, the name of the
 -- part, project, and the quantity of the parts.
+
+---------------------------------------------------------------------------------------------------------
+
+The command would show like this:
+
+
+'SCREW','BLAKE','SORTER','200'
+'SCREW','JONES','SORTER','400'
+'SCREW','JONES','DISPLAY','200'
+'SCREW','BLAKE','DISPLAY','500'
+'SCREW','JONES','OCR','200'
+'SCREW','JONES','CONSOLE','500'
+'SCREW','ADAMS','CONSOLE','200'
+'SCREW','ADAMS','CONSOLE','800'
+'SCREW','JONES','RAID','600'
+'SCREW','JONES','EDS','400'
+'SCREW','JONES','TAPE','800'
+'NUT','SMITH','SORTER','200'
+'NUT','SMITH','CONSOLE','700'
+'NUT','ADAMS','CONSOLE','100'
+'COG','ADAMS','DISPLAY','200'
+'COG','CLARK','OCR','300'
+'COG','ADAMS','CONSOLE','500'
+'COG','CLARK','TAPE','300'
+'CAM','JONES','DISPLAY','100'
+'CAM','ADAMS','CONSOLE','400'
+'CAM','ADAMS','RAID','500'
+'CAM','ADAMS','TAPE','100'
+'BOLT','ADAMS','DISPLAY','200'
+'BOLT','ADAMS','CONSOLE','100'
+
+
